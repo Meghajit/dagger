@@ -54,9 +54,9 @@ public class Streams implements TelemetryPublisher {
     /**
      * Instantiates a new Streams.
      *
-     * @param configuration               the configuration
-     * @param rowTimeAttributeName        the row time attribute name
-     * @param stencilClientOrchestrator   the stencil client orchestrator
+     * @param configuration             the configuration
+     * @param rowTimeAttributeName      the row time attribute name
+     * @param stencilClientOrchestrator the stencil client orchestrator
      */
     public Streams(Configuration configuration, String rowTimeAttributeName, StencilClientOrchestrator stencilClientOrchestrator) {
         this.configuration = configuration;
@@ -114,6 +114,7 @@ public class Streams implements TelemetryPublisher {
                 .forEach(e -> kafkaProps.setProperty(parseVarName(e.getKey(), KAFKA_PREFIX), e.getValue()));
 
         setAdditionalConfigs(kafkaProps);
+
 
         // TODO : OffsetReset Strategy can be more matured
         KafkaSource<Row> source = KafkaSource.<Row>builder()
